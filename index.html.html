@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuegora — Fire. Now. Intelligence.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --brand:#0f172a;--accent:#e85d04;--accent2:#f48c06;--accent-light:#fff3e0;
+      --text:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#fff;--surface:#f8fafc;
+    }
+    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);font-size:15px;line-height:1.65}
+
+    /* NAV */
+    nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);z-index:100}
+    .logo{font-family:'DM Serif Display',serif;font-size:22px;letter-spacing:-0.3px;color:var(--brand);line-height:1.1;text-decoration:none}
+    .logo small{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400;margin-top:1px}
+    nav ul{display:flex;gap:32px;list-style:none}
+    nav ul li a{font-size:14px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+    nav ul li a:hover{color:var(--text)}
+    .nav-cta{background:var(--accent) !important;color:#fff !important;padding:8px 20px;border-radius:6px;font-size:13px !important;font-weight:500 !important}
+
+    /* HERO */
+    .hero{padding:96px 48px 80px;max-width:800px;margin:0 auto;text-align:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:500;padding:5px 16px;border-radius:20px;margin-bottom:28px;letter-spacing:.3px;border:1px solid #ffd699}
+    .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(36px,5.5vw,62px);line-height:1.08;color:var(--brand);letter-spacing:-1.5px;margin-bottom:22px}
+    .hero h1 em{font-style:italic;color:var(--accent)}
+    .hero p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 36px;line-height:1.75;font-weight:300}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-primary{background:var(--accent);color:#fff;padding:13px 28px;border-radius:7px;font-size:14px;font-weight:500;border:none;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block}
+    .btn-primary:hover{opacity:.88}
+    .btn-secondary{background:transparent;color:var(--text);padding:13px 28px;border-radius:7px;font-size:14px;font-weight:400;border:1px solid var(--border);cursor:pointer;text-decoration:none;display:inline-block}
+    .btn-secondary:hover{border-color:#94a3b8;background:var(--surface)}
+
+    /* TRUST BAR */
+    .trust-bar{padding:28px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;background:var(--surface)}
+    .trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:400}
+    .trust-item i{color:var(--accent);font-size:15px}
+
+    /* SECTIONS */
+    .section{padding:88px 48px;max-width:1080px;margin:0 auto}
+    .section-label{font-size:11px;font-weight:500;letter-spacing:1.8px;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,3.5vw,40px);color:var(--brand);letter-spacing:-0.6px;line-height:1.2;margin-bottom:14px}
+    .section-sub{font-size:16px;color:var(--muted);max-width:480px;line-height:1.7;font-weight:300;margin-bottom:56px}
+
+    /* SERVICES */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .service-card{padding:36px 32px;background:var(--bg);transition:background .2s}
+    .service-card:hover{background:var(--surface)}
+    .service-icon{width:44px;height:44px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;border:1px solid #ffd699}
+    .service-icon i{font-size:20px;color:var(--accent)}
+    .service-card h3{font-size:16px;font-weight:500;color:var(--brand);margin-bottom:10px}
+    .service-card p{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
+    .service-tag{display:inline-block;margin-top:14px;font-size:11px;font-weight:500;color:var(--accent);background:var(--accent-light);padding:3px 10px;border-radius:4px;border:1px solid #ffd699}
+
+    /* PROCESS */
+    .process-section{background:var(--surface);padding:88px 0}
+    .process-inner{max-width:1080px;margin:0 auto;padding:0 48px}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:48px}
+    .step{padding:0 24px;position:relative}
+    .step:not(:last-child)::after{content:'';position:absolute;right:0;top:22px;width:1px;height:60%;background:var(--border)}
+    .step-num{font-family:'DM Serif Display',serif;font-size:36px;color:#e2e8f0;line-height:1;margin-bottom:16px}
+    .step h4{font-size:14px;font-weight:500;color:var(--brand);margin-bottom:8px}
+    .step p{font-size:13px;color:var(--muted);line-height:1.65;font-weight:300}
+
+    /* RESULTS */
+    .results-section{padding:88px 48px;max-width:1080px;margin:0 auto}
+    .results-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px}
+    .result-card{background:var(--surface);border-radius:10px;padding:28px 24px;text-align:center}
+    .result-num{font-family:'DM Serif Display',serif;font-size:40px;color:var(--accent);letter-spacing:-1px;line-height:1}
+    .result-label{font-size:12px;color:var(--muted);margin-top:8px}
+
+    /* BOOKING */
+    .booking-section{padding:88px 0;background:var(--surface);border-top:1px solid var(--border)}
+    .booking-inner{max-width:1080px;margin:0 auto;padding:0 48px}
+    .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px}
+    .contact-form{display:flex;flex-direction:column;gap:16px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:12px;font-weight:500;color:var(--brand);letter-spacing:.2px}
+    .field input,.field select,.field textarea{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px 14px;outline:none;transition:border-color .2s;width:100%}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+    .field textarea{resize:vertical;min-height:100px;line-height:1.6}
+    .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+    .submit-btn{background:var(--accent);color:#fff;padding:13px 28px;border-radius:7px;font-size:14px;font-weight:500;border:none;cursor:pointer;width:100%;margin-top:4px;transition:opacity .2s}
+    .submit-btn:hover{opacity:.88}
+    .form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+    .success-msg{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:32px;text-align:center}
+    .success-msg.show{display:block}
+    .success-msg i{font-size:32px;color:#16a34a;display:block;margin-bottom:12px}
+    .success-msg h4{font-size:15px;font-weight:500;color:#166534;margin-bottom:6px}
+    .success-msg p{font-size:13px;color:#15803d}
+
+    /* CALENDAR */
+    .calendar-label{font-size:12px;font-weight:500;color:var(--brand);letter-spacing:.2px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+    .calendar-label i{color:var(--accent)}
+    .cal-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg)}
+    .cal-header{background:var(--accent);padding:20px 24px;color:#fff}
+    .cal-header h4{font-family:'DM Serif Display',serif;font-size:18px;letter-spacing:-0.3px;margin-bottom:4px}
+    .cal-header p{font-size:12px;opacity:.8}
+    .cal-body{padding:24px}
+    .cal-month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .cal-month span{font-size:14px;font-weight:500;color:var(--brand)}
+    .cal-month button{background:none;border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-size:12px;cursor:pointer;color:var(--muted)}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;margin-bottom:16px}
+    .cal-day-label{font-size:10px;color:var(--muted);font-weight:500;padding:4px 0}
+    .cal-day{font-size:12px;padding:7px 4px;border-radius:5px;cursor:pointer;color:var(--muted);transition:background .15s}
+    .cal-day.avail{color:var(--brand);font-weight:500}
+    .cal-day.avail:hover{background:var(--accent-light);color:var(--accent)}
+    .cal-day.sel{background:var(--accent) !important;color:#fff !important;font-weight:600}
+    .cal-day.empty{cursor:default}
+    .cal-times{display:none;margin-bottom:16px}
+    .cal-times p{font-size:12px;color:var(--muted);margin-bottom:8px}
+    .time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .time-slot{font-size:12px;padding:8px 4px;border:1px solid var(--border);border-radius:6px;text-align:center;cursor:pointer;color:var(--brand);transition:all .15s}
+    .time-slot:hover,.time-slot.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .cal-confirm{width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;opacity:.4;margin-bottom:8px;transition:opacity .2s}
+    .cal-confirm.ready{opacity:1}
+    .cal-note{font-size:11px;color:var(--muted);text-align:center}
+
+    /* CTA */
+    .cta-section{background:var(--brand);padding:88px 48px;text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{content:'FUEGORA';position:absolute;font-family:'DM Serif Display',serif;font-size:160px;color:rgba(255,255,255,0.03);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:-4px}
+    .cta-section h2{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,46px);color:#fff;letter-spacing:-0.8px;margin-bottom:16px;position:relative}
+    .cta-section p{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:36px;font-weight:300;max-width:420px;margin-left:auto;margin-right:auto;position:relative}
+    .btn-white{background:#fff;color:var(--accent);padding:14px 32px;border-radius:7px;font-size:14px;font-weight:500;border:none;cursor:pointer;position:relative;text-decoration:none;display:inline-block}
+
+    /* FOOTER */
+    footer{padding:40px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--brand);line-height:1.2}
+    .footer-logo small{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400;margin-top:2px}
+    footer p{font-size:13px;color:var(--muted)}
+
+    /* RESPONSIVE */
+    @media(max-width:860px){.booking-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){
+      nav{padding:16px 20px}nav ul{display:none}
+      .hero{padding:60px 20px 48px}
+      .trust-bar{gap:20px;padding:20px}
+      .section,.results-section{padding:60px 20px}
+      .process-inner,.booking-inner{padding:0 20px}
+      .cta-section{padding:60px 20px}
+      footer{padding:28px 20px;flex-direction:column;gap:8px}
+      .step:not(:last-child)::after{display:none}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Fuegora<small>Fire. Now. Intelligence.</small></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How it works</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#booking" class="nav-cta">Book a call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🔥 Fire meets intelligence — built for service businesses</div>
+  <h1>Ignite your service business<br>with <em>AI that moves</em></h1>
+  <p>Fuegora builds AI systems that automate your operations, fuel your pipeline, and keep your clients coming back — so you burn brighter, right now.</p>
+  <div class="hero-btns">
+    <a href="#booking" class="btn-primary">Book a free call ↗</a>
+    <a href="#services" class="btn-secondary">See our services</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><i class="ti ti-check"></i> No tech knowledge needed</div>
+  <div class="trust-item"><i class="ti ti-check"></i> Live in 2–4 weeks</div>
+  <div class="trust-item"><i class="ti ti-check"></i> Done-for-you setup</div>
+  <div class="trust-item"><i class="ti ti-check"></i> Ongoing support included</div>
+</div>
+
+<!-- SERVICES -->
+<div class="section" id="services">
+  <p class="section-label">What we do</p>
+  <h2 class="section-title">Four pillars that fuel<br>service businesses forward</h2>
+  <p class="section-sub">From first contact to closed deal — we automate the parts of your business that slow you down and set the rest on fire.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="ti ti-message-chatbot"></i></div>
+      <h3>AI chatbots & assistants</h3>
+      <p>A 24/7 intelligent assistant trained on your business — answers questions, qualifies leads, and books appointments while you sleep.</p>
+      <span class="service-tag">Chatbots</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="ti ti-refresh"></i></div>
+      <h3>Workflow automation</h3>
+      <p>Eliminate repetitive admin. We automate onboarding, follow-ups, invoicing triggers, and internal processes end-to-end.</p>
+      <span class="service-tag">Automation</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="ti ti-pencil"></i></div>
+      <h3>AI content creation</h3>
+      <p>Consistent, on-brand content at scale. Blog posts, email sequences, social captions, and proposals — generated and ready to publish.</p>
+      <span class="service-tag">Content</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="ti ti-target"></i></div>
+      <h3>Lead generation & CRM</h3>
+      <p>AI that identifies, scores, and nurtures leads automatically. Your CRM stays fresh and your pipeline fills without cold calling.</p>
+      <span class="service-tag">Growth</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process-section" id="process">
+  <div class="process-inner">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">From spark to fully lit —<br>in weeks, not months</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Discovery call</h4>
+        <p>We map your workflow and find where AI can fuel the biggest gains fastest.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Custom build</h4>
+        <p>Our team builds and trains your AI tools around your business, clients, and tone of voice.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Launch & train</h4>
+        <p>We deploy everything, walk your team through it, and make sure it all runs right from day one.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Ongoing support</h4>
+        <p>We keep the fire burning — monitoring, refining, and building as your business grows.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="results-section" id="results">
+  <p class="section-label">Results</p>
+  <h2 class="section-title">Numbers our clients<br>actually care about</h2>
+  <p class="section-sub">Real outcomes from service businesses that used Fuegora to move faster and grow smarter.</p>
+  <div class="results-grid">
+    <div class="result-card"><div class="result-num">73%</div><div class="result-label">Reduction in admin time</div></div>
+    <div class="result-card"><div class="result-num">3.2×</div><div class="result-label">More leads responded to</div></div>
+    <div class="result-card"><div class="result-num">24/7</div><div class="result-label">Client-facing availability</div></div>
+    <div class="result-card"><div class="result-num">14d</div><div class="result-label">Average time to go live</div></div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<div class="booking-section" id="booking">
+  <div class="booking-inner">
+    <p class="section-label">Get started</p>
+    <h2 class="section-title">Let's talk about<br>your business</h2>
+    <p class="section-sub">Send us a message or pick a time directly — we'll show you exactly what AI can do, free of charge.</p>
+    <div class="booking-grid">
+
+      <!-- Contact form -->
+      <div>
+        <div id="form-wrap">
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="field"><label>First name</label><input type="text" id="fname" placeholder="Maria"></div>
+              <div class="field"><label>Last name</label><input type="text" id="lname" placeholder="Gonzalez"></div>
+            </div>
+            <div class="field"><label>Business email</label><input type="email" id="email" placeholder="maria@yourbusiness.com"></div>
+            <div class="field"><label>Business name</label><input type="text" id="biz" placeholder="Your company name"></div>
+            <div class="field">
+              <label>What service interests you most?</label>
+              <select id="service">
+                <option value="">Select a service...</option>
+                <option>AI chatbots & assistants</option>
+                <option>Workflow automation</option>
+                <option>AI content creation</option>
+                <option>Lead generation & CRM</option>
+                <option>All of the above</option>
+              </select>
+            </div>
+            <div class="field"><label>Tell us about your business</label><textarea id="msg" placeholder="What do you do, how many clients do you have, what's eating your time right now?"></textarea></div>
+            <button class="submit-btn" onclick="submitForm()">Send message ↗</button>
+            <p class="form-note">We reply within 24 hours, usually faster.</p>
+          </div>
+        </div>
+        <div class="success-msg" id="success-msg">
+          <i class="ti ti-circle-check"></i>
+          <h4>Message sent — the fire is lit.</h4>
+          <p>We'll be in touch within 24 hours. Feel free to pick a time on the calendar too.</p>
+        </div>
+      </div>
+
+      <!-- Calendar
+           TO ACTIVATE CALENDLY: replace the entire .cal-wrap div below with:
+           <iframe src="https://calendly.com/YOUR_LINK" width="100%" height="630" frameborder="0" style="border-radius:10px"></iframe>
+      -->
+      <div>
+        <div class="calendar-label"><i class="ti ti-calendar"></i> Or pick a time directly</div>
+        <div class="cal-wrap">
+          <div class="cal-header">
+            <h4>Free 30-min Discovery Call</h4>
+            <p>Fuegora &nbsp;·&nbsp; Video call &nbsp;·&nbsp; No commitment</p>
+          </div>
+          <div class="cal-body">
+            <div class="cal-month">
+              <span>June 2025</span>
+              <div style="display:flex;gap:6px"><button>‹</button><button>›</button></div>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-day-label">Su</div><div class="cal-day-label">Mo</div><div class="cal-day-label">Tu</div><div class="cal-day-label">We</div><div class="cal-day-label">Th</div><div class="cal-day-label">Fr</div><div class="cal-day-label">Sa</div>
+              <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div>
+              <div class="cal-day">2</div><div class="cal-day avail" onclick="pickDay(this)">3</div><div class="cal-day avail" onclick="pickDay(this)">4</div><div class="cal-day avail" onclick="pickDay(this)">5</div><div class="cal-day avail" onclick="pickDay(this)">6</div><div class="cal-day avail" onclick="pickDay(this)">7</div><div class="cal-day">8</div>
+              <div class="cal-day">9</div><div class="cal-day avail" onclick="pickDay(this)">10</div><div class="cal-day avail" onclick="pickDay(this)">11</div><div class="cal-day avail" onclick="pickDay(this)">12</div><div class="cal-day avail" onclick="pickDay(this)">13</div><div class="cal-day avail" onclick="pickDay(this)">14</div><div class="cal-day">15</div>
+              <div class="cal-day">16</div><div class="cal-day avail" onclick="pickDay(this)">17</div><div class="cal-day avail" onclick="pickDay(this)">18</div><div class="cal-day avail" onclick="pickDay(this)">19</div><div class="cal-day avail" onclick="pickDay(this)">20</div><div class="cal-day avail" onclick="pickDay(this)">21</div><div class="cal-day">22</div>
+              <div class="cal-day">23</div><div class="cal-day avail" onclick="pickDay(this)">24</div><div class="cal-day avail" onclick="pickDay(this)">25</div><div class="cal-day avail" onclick="pickDay(this)">26</div><div class="cal-day avail" onclick="pickDay(this)">27</div><div class="cal-day avail" onclick="pickDay(this)">28</div><div class="cal-day">29</div>
+              <div class="cal-day">30</div>
+            </div>
+            <div class="cal-times" id="cal-times">
+              <p>Available times</p>
+              <div class="time-slots">
+                <div class="time-slot" onclick="pickTime(this)">9:00 AM</div>
+                <div class="time-slot" onclick="pickTime(this)">10:00 AM</div>
+                <div class="time-slot" onclick="pickTime(this)">11:00 AM</div>
+                <div class="time-slot" onclick="pickTime(this)">1:00 PM</div>
+                <div class="time-slot" onclick="pickTime(this)">2:00 PM</div>
+                <div class="time-slot" onclick="pickTime(this)">3:00 PM</div>
+              </div>
+            </div>
+            <button class="cal-confirm" id="cal-btn" onclick="confirmCal()">Confirm booking</button>
+            <p class="cal-note" id="cal-note">📅 Replace with your Calendly link to activate live booking</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to ignite?</h2>
+  <p>No fluff. No long sales calls. Just a clear plan for how AI can fuel your specific business.</p>
+  <a href="#booking" class="btn-white">Book your free call ↗</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Fuegora<small>Fire. Now. Intelligence.</small></div>
+  <p>© 2025 Fuegora. All rights reserved.</p>
+  <p>hola@fuegora.ai</p>
+</footer>
+
+<script>
+  function submitForm(){
+    if(!document.getElementById('fname').value||!document.getElementById('email').value||!document.getElementById('service').value){
+      alert('Please fill in your name, email, and service of interest.');return;
+    }
+    document.getElementById('form-wrap').style.display='none';
+    document.getElementById('success-msg').classList.add('show');
+  }
+  function pickDay(el){
+    document.querySelectorAll('.cal-day').forEach(d=>d.classList.remove('sel'));
+    el.classList.add('sel');
+    document.getElementById('cal-times').style.display='block';
+    document.querySelectorAll('.time-slot').forEach(t=>t.classList.remove('active'));
+    document.getElementById('cal-btn').classList.remove('ready');
+  }
+  function pickTime(el){
+    document.querySelectorAll('.time-slot').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('cal-btn').classList.add('ready');
+  }
+  function confirmCal(){
+    const btn=document.getElementById('cal-btn');
+    if(!btn.classList.contains('ready'))return;
+    document.getElementById('cal-note').textContent='✅ Booking confirmed! We\'ll send a calendar invite shortly.';
+    btn.textContent='Booked ✓';btn.style.background='#16a34a';btn.style.opacity='1';
+  }
+</script>
+</body>
+</html>
